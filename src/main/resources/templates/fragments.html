@@ -1,0 +1,17 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head></head>
+  <body>
+    <div th:fragment="text-input (id, label, name)" class="col"> 
+      <label th:for="${id}" th:text="${label}" class=""></label>
+      <input type="text" class="form-control" th:id="${id}" th:name="${name}" th:placeholder="${label}"></input>
+    </div>
+    <div th:fragment="number-input (id, label, name)" class="col"> 
+      <label th:for="${id}" th:text="${label}" class=""></label>
+      <input type="number" class="form-control" th:id="${id}" th:name="${name}" th:placeholder="${label}"></input>
+    </div>  
+    <div th:fragment="number-one-decimal-input (id, label, name)" class="col"> 
+      <label th:for="${id}" th:text="${label}" class=""></label>
+      <input type="number" step=0.1 class="form-control" th:id="${id}" th:name="${name}" th:placeholder="${label}"></input>
+    </div>    
+  </body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="primary search page of ultimate big bash league">
+    <meta name="author" content="Kameswaran Ganesh">
+    
+    <title>Ultimate Big Bash League</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom css -->
+    <link href="css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="link to prob statement">UBBL</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">by Kameswaran Ganesh <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="to github">this.Github</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="to github">my.LinkedIn</a>
+            </li>
+          </ul>
+          <!--<form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search for query params" aria-label="Search">-->
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+          <!--</form>-->
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Page Content -->
+    <div class="container">
+      <h1 class="text-center">Utlimate Big Bash League</h1>
+      <p class="lead text-center">
+        This is the query API for team owners to get info about players.<br>
+        Use the provided form to specify search criteria and the search function at top to quicskly filter query parameter
+      </p>
+      <form>
+        <div class="form-group">
+          <hr>
+          <h3 class="text-center">Basic Info</h3>
+          <div class="row align-items-center mt-2">
+            <div th:replace="fragments::text-input(id='name', label='Name', name='Name')"></div>
+            <div th:replace="fragments::text-input(id='nationality', label='Nationality', name='Nationality')"></div>
+            <div th:replace="fragments::text-input(id='team', label='Team', name='Team')"></div>
+          </div>
+          <div class="row align-items-center mt-2">
+            <div th:replace="fragments::number-input(id='value', label='Player Value USD', name='Player Value USD')"></div>
+            <div th:replace="fragments::number-input(id='matches', label='Matches', name='Matches')"></div>
+            <div th:replace="fragments::number-input(id='innings', label='Innings played', name='Innings played')"></div>
+          </div>
+          <div class="row align-items-center mt-2">
+            <div th:class="col-2">Is Captain?</div>
+            <div th:class="col-1">
+              <input th:type="radio" th:id="captaincy1" name="Is Captain(1=yes)" value="1" class="form-check-input">
+              <label th:for="captaincy1" class="form-check-label">Yes</label>
+            </div>
+            <div class="col-1">
+              <input th:type="radio" th:id="captaincy0" name="Is Captain(1=yes)" value="0" class="form-check-input">
+              <label th:for="captaincy0" checked class="form-check-label">No</label>
+            </div>
+            <div th:replace="fragments::number-input(id='matches2', label='Matches played', name='Matches played')"></div>
+            <div th:replace="fragments::number-input(id='innings2', label='Innings played 2', name='Innings played 2')"></div>
+          </div>
+          <hr>
+          <h3 class="text-center">Batsman Info</h3>
+          <div class="row align-items-center mt-2">
+            <div th:class="col-2">Is Batsman?</div>
+            <div th:class="col-1">
+              <input th:type="radio" th:id="batsman1" name="Is batsman" value="1" class="form-check-input">
+              <label th:for="batsman1" class="form-check-label">Yes</label>
+            </div>
+            <div class="col-1">
+              <input th:type="radio" th:id="batsman0" name="Is batsman" value="0" class="form-check-input">
+              <label th:for="batsman0" checked class="form-check-label">No</label>
+            </div>
+            <div th:replace="fragments::number-input(id='ballsFaced', label='Balls faced', name='Balls faced')"></div>
+            <div th:replace="fragments::number-one-decimal-input(id='strikeRate', label='Strike Rate', name='Strike rate')"></div>
+          </div>
+          <div class="row align-items-center mt-2">
+            <div th:replace="fragments::number-input(id='runsScored', label='Runs Scored', name='Runs scored')"></div>
+            <div th:replace="fragments::number-input(id='50RunsMade', label='50 Runs Made', name='50 runs made')"></div>
+            <div th:replace="fragments::number-input(id='100RunsMade', label='100 Runs Made', name='100 runs made')"></div>
+          </div>
+          <div class="row align-items-center mt-2">
+            <div th:replace="fragments::number-input(id='highestScore', label='Highest Score', name='Highest score')"></div>
+            <div th:replace="fragments::number-input(id='4s', label='Fours, 4s', name='4s')"></div>
+            <div th:replace="fragments::number-input(id='6s', label='Sixes, 6s', name='6s')"></div>
+          </div>
+          <div class="row align-items-center mt-2">
+            <div th:replace="fragments::number-input(id='notOut', label='Not Out', name='Not out')"></div>
+            <div th:replace="fragments::number-one-decimal-input(id='battingAvg', label='Batting Average', name='Batting avg')"></div>
+          </div>
+          <hr>
+          <h3 class="text-center">Wicketkeeper Info</h3>
+          <div class="row align-items-center mt-2">
+            <div th:class="col-2">Is Wicketkeeper?</div>
+            <div th:class="col-1">
+              <input th:type="radio" th:id="keeper1" name="Is Wktkeeper(1=Yes)" value="1" class="form-check-input">
+              <label th:for="keeper1" class="form-check-label">Yes</label>
+            </div>
+            <div class="col-1">
+              <input th:type="radio" th:id="keeper0" name="Is Wktkeeper(1=Yes)" value="0" class="form-check-input">
+              <label th:for="keeper0" checked class="form-check-label">No</label>
+            </div>
+            <div th:replace="fragments::number-one-decimal-input(id='catchesPerMatch', label='Catches per Match', name='Catches per match')"></div>
+            <div th:replace="fragments::number-input(id='catchesTaken', label='Catches Taken', name='Catches taken')"></div>
+          </div>
+          <hr>
+          <h3 class="text-center">Bowler Info</h3>
+          <div class="row align-items-center mt-2">
+            <div th:class="col-2">Is Bowler?</div>
+            <div th:class="col-1">
+              <input th:type="radio" th:id="bowler1" name="Is bowler?" value="1" class="form-check-input">
+              <label th:for="bowler1" class="form-check-label">Yes</label>
+            </div>
+            <div class="col-1">
+              <input th:type="radio" th:id="bowler0" name="Is bowler?" value="0" class="form-check-input">
+              <label th:for="bowler0" checked class="form-check-label">No</label>
+            </div>
+            <div th:replace="fragments::number-input(id='ballsBowled', label='Balls Bowled', name='Number of balls bowled')"></div>
+            <div th:replace="fragments::number-input(id='runsGiven', label='Runs Given', name='Runs given')"></div>
+          </div>
+          <div class="row align-items-center mt-2">
+            <div th:replace="fragments::number-input(id='wicketsTaken', label='Wickets Taken', name='Wkts taken')"></div>
+            <div th:replace="fragments::number-one-decimal-input(id='Bowling', label='Wickets Taken', name='Bowling econ')"></div>
+            <div th:replace="fragments::number-input(id='5WicketHauls', label='5 Wicket Hauls', name='5 Wicket hauls')"></div>
+          </div>
+          <hr>
+          <div class="w-fit-content mx-auto">
+            <button class="btn btn-primary btn-lg" type="submit">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/jquery/jquery.slim.min.js"></script>
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
