@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: ubbl-query-service
+  devtools:
+    restart:
+      enabled: true
+    add-properties: true
+
+logging:
+  level:
+    org.springframework.boot.autoconfigure.logging: INFO
+
+server:
+  port=8080
+
+eureka:
+  client:
+    enabled: true
+    serviceUrl:
+      defaultZone: http://ip-172-31-21-143:8080/eureka
