@@ -9,155 +9,325 @@
     <title>Ultimate Big Bash League</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    
+    <link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!--FontAwesome CSS-->
+    <link href="/webjars/font-awesome/5.12.0/css/all.min.css" rel="stylesheet">
     <!-- Custom css -->
     <link href="css/main.css" rel="stylesheet">
   </head>
   <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="link to prob statement">UBBL</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-  
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">by Kameswaran Ganesh <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="to github">this.Github</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="to github">my.LinkedIn</a>
-            </li>
-          </ul>
-          <!--<form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search for query params" aria-label="Search">-->
-            <button class="btn btn-primary my-2 my-sm-0" type="submit" id="searchSecndry">Search</button>
-          <!--</form>-->
-        </div>
-      </div>
-    </nav>
-    
-    <!-- Page Content -->
-    <div class="container">
-      <h1 class="text-center">Utlimate Big Bash League</h1>
-      <p class="lead text-center">
-        This is the query API for team owners to get info about players.<br>
-        Use the provided form to specify search criteria and the search function at top to quicskly filter query parameter
-      </p>
-      <form id="searchForm">
-        <div class="form-group">
-          <hr>
-          <h3 class="text-center">Basic Info</h3>
-          <div class="row align-items-center mt-2">
-            <div th:replace="fragments::text-input(id='name', label='Name', name='Name')"></div>
-            <div th:replace="fragments::text-input(id='nationality', label='Nationality', name='Nationality')"></div>
-            <div th:replace="fragments::text-input(id='team', label='Team', name='Team')"></div>
-          </div>
-          <div class="row align-items-center mt-2">
-            <div th:replace="fragments::number-input(id='value', label='Player Value USD', name='Player Value USD')"></div>
-            <div th:replace="fragments::number-input(id='matches', label='Matches', name='Matches')"></div>
-            <div th:replace="fragments::number-input(id='innings', label='Innings played', name='Innings played')"></div>
-          </div>
-          <div class="row align-items-center mt-2">
-            <div th:class="col-2">Is Captain?</div>
-            <div th:class="col-1">
-              <input th:type="radio" th:id="captaincy1" name="Is Captain(1=yes)" value="1" class="form-check-input">
-              <label th:for="captaincy1" class="form-check-label">Yes</label>
+    <div id="bodyWrapper">
+        <!-- Error Modal -->
+        <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                {{ errorMessage }}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
             </div>
-            <div class="col-1">
-              <input th:type="radio" th:id="captaincy0" name="Is Captain(1=yes)" value="0" class="form-check-input">
-              <label th:for="captaincy0" checked class="form-check-label">No</label>
-            </div>
-            <div th:replace="fragments::number-input(id='matches2', label='Matches played', name='Matches played')"></div>
-            <div th:replace="fragments::number-input(id='innings2', label='Innings played 2', name='Innings played 2')"></div>
-          </div>
-          <hr>
-          <h3 class="text-center">Batsman Info</h3>
-          <div class="row align-items-center mt-2">
-            <div th:class="col-2">Is Batsman?</div>
-            <div th:class="col-1">
-              <input th:type="radio" th:id="batsman1" name="Is batsman" value="1" class="form-check-input">
-              <label th:for="batsman1" class="form-check-label">Yes</label>
-            </div>
-            <div class="col-1">
-              <input th:type="radio" th:id="batsman0" name="Is batsman" value="0" class="form-check-input">
-              <label th:for="batsman0" checked class="form-check-label">No</label>
-            </div>
-            <div th:replace="fragments::number-input(id='ballsFaced', label='Balls faced', name='Balls faced')"></div>
-            <div th:replace="fragments::number-one-decimal-input(id='strikeRate', label='Strike Rate', name='Strike rate')"></div>
-          </div>
-          <div class="row align-items-center mt-2">
-            <div th:replace="fragments::number-input(id='runsScored', label='Runs Scored', name='Runs scored')"></div>
-            <div th:replace="fragments::number-input(id='50RunsMade', label='50 Runs Made', name='50 runs made')"></div>
-            <div th:replace="fragments::number-input(id='100RunsMade', label='100 Runs Made', name='100 runs made')"></div>
-          </div>
-          <div class="row align-items-center mt-2">
-            <div th:replace="fragments::number-input(id='highestScore', label='Highest Score', name='Highest score')"></div>
-            <div th:replace="fragments::number-input(id='4s', label='Fours, 4s', name='4s')"></div>
-            <div th:replace="fragments::number-input(id='6s', label='Sixes, 6s', name='6s')"></div>
-          </div>
-          <div class="row align-items-center mt-2">
-            <div th:replace="fragments::number-input(id='notOut', label='Not Out', name='Not out')"></div>
-            <div th:replace="fragments::number-one-decimal-input(id='battingAvg', label='Batting Average', name='Batting avg')"></div>
-          </div>
-          <hr>
-          <h3 class="text-center">Wicketkeeper Info</h3>
-          <div class="row align-items-center mt-2">
-            <div th:class="col-2">Is Wicketkeeper?</div>
-            <div th:class="col-1">
-              <input th:type="radio" th:id="keeper1" name="Is Wktkeeper(1=Yes)" value="1" class="form-check-input">
-              <label th:for="keeper1" class="form-check-label">Yes</label>
-            </div>
-            <div class="col-1">
-              <input th:type="radio" th:id="keeper0" name="Is Wktkeeper(1=Yes)" value="0" class="form-check-input">
-              <label th:for="keeper0" checked class="form-check-label">No</label>
-            </div>
-            <div th:replace="fragments::number-one-decimal-input(id='catchesPerMatch', label='Catches per Match', name='Catches per match')"></div>
-            <div th:replace="fragments::number-input(id='catchesTaken', label='Catches Taken', name='Catches taken')"></div>
-          </div>
-          <hr>
-          <h3 class="text-center">Bowler Info</h3>
-          <div class="row align-items-center mt-2">
-            <div th:class="col-2">Is Bowler?</div>
-            <div th:class="col-1">
-              <input th:type="radio" th:id="bowler1" name="Is bowler?" value="1" class="form-check-input">
-              <label th:for="bowler1" class="form-check-label">Yes</label>
-            </div>
-            <div class="col-1">
-              <input th:type="radio" th:id="bowler0" name="Is bowler?" value="0" class="form-check-input">
-              <label th:for="bowler0" checked class="form-check-label">No</label>
-            </div>
-            <div th:replace="fragments::number-input(id='ballsBowled', label='Balls Bowled', name='Number of balls bowled')"></div>
-            <div th:replace="fragments::number-input(id='runsGiven', label='Runs Given', name='Runs given')"></div>
-          </div>
-          <div class="row align-items-center mt-2">
-            <div th:replace="fragments::number-input(id='wicketsTaken', label='Wickets Taken', name='Wkts taken')"></div>
-            <div th:replace="fragments::number-one-decimal-input(id='Bowling', label='Wickets Taken', name='Bowling econ')"></div>
-            <div th:replace="fragments::number-input(id='5WicketHauls', label='5 Wicket Hauls', name='5 Wicket hauls')"></div>
-          </div>
-          <hr>
-          <div class="w-fit-content mx-auto">
-            <button class="btn btn-primary btn-lg" type="submit" id="searchPrmry">Search</button>
           </div>
         </div>
-      </form>
+     
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+              <a class="navbar-brand" href="link to prob statement">UBBL</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+        
+              <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#">by Kameswaran Ganesh <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="to github">this.Github</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="to github">my.LinkedIn</a>
+                  </li>
+                </ul>
+                <button class="btn btn-secondary my-2 my-sm-0 mx-1" v-on:click="clear">Clear</button>
+                <button class="btn btn-primary my-2 my-sm-0" v-on:click="search">Search</button>
+              </div>
+            </div>
+        </nav>
+      
+         <!-- Content -->
+        <div class="container">
+            <h1 class="text-center">Utlimate Big Bash League</h1>
+            <p class="lead text-center">
+              This is the query API for team owners to get info about players.<br>
+              Use the provided form to specify your search criteria.
+            </p>
+            
+            <!-- Search Criteria -->
+            <div class="bg-light p-1 mb-3 rounded">
+                <h3 id="criteria" class="d-inline">Criteria</h3>
+                <i v-bind:class="'float-right fa fa-2x fa-chevron-circle-' + chevron('criteria')" v-on:click="toggle('criteria', $event)"></i>
+            </div>
+            <form id="searchForm" class="px-1" v-on:submit="search" v-show="show.criteria">
+              <div class="form-group">
+                <h4 class="text-center">Basic Info</h4>
+                <div class="row align-items-center mt-2">
+                  <div th:replace="fragments::text-input(id='name', label='Name', name='Name')"></div>
+                  <div th:replace="fragments::text-input(id='nationality', label='Nationality', name='Nationality')"></div>
+                  <div th:replace="fragments::text-input(id='team', label='Team', name='Team')"></div>
+                </div>
+                <div class="row align-items-center mt-2">
+                  <div th:replace="fragments::number-input(id='value', label='Player Value USD', name='Player Value USD')"></div>
+                  <div th:replace="fragments::number-input(id='matches', label='Matches', name='Matches')"></div>
+                  <div th:replace="fragments::number-input(id='innings', label='Innings played', name='Innings played')"></div>
+                </div>
+                <div class="row align-items-center mt-2">
+                  <div class="col-2 font-weight-bold">Is Captain?</div>
+                  <div class="col-1 form-check">
+                    <input type="radio" id="captaincy1" name="Is Captain(1=yes)" value="1" class="form-check-input">
+                    <label for="captaincy1" class="form-check-label">Yes</label>
+                  </div>
+                  <div class="col-1 form-check">
+                    <input type="radio" id="captaincy0" name="Is Captain(1=yes)" value="0" class="form-check-input">
+                    <label for="captaincy0" class="form-check-label">No</label>
+                  </div>
+                  <div th:replace="fragments::number-input(id='matches2', label='Matches played', name='Matches played')"></div>
+                  <div th:replace="fragments::number-input(id='innings2', label='Innings played 2', name='Innings played 2')"></div>
+                </div>
+                <hr>
+                <h4 class="text-center">Batting Stats</h4>
+                <div class="row align-items-center mt-2">
+                  <div class="col-2 font-weight-bold">Is Batsman?</div>
+                  <div class="col-1 form-check">
+                    <input type="radio" id="batsman1" name="Is batsman" value="1" class="form-check-input">
+                    <label for="batsman1" class="form-check-label">Yes</label>
+                  </div>
+                  <div class="col-1 form-check">
+                    <input th:type="radio" th:id="batsman0" name="Is batsman" value="0" class="form-check-input">
+                    <label th:for="batsman0" class="form-check-label">No</label>
+                  </div>
+                  <div th:replace="fragments::number-input(id='ballsFaced', label='Balls faced', name='Balls faced')"></div>
+                  <div th:replace="fragments::number-one-decimal-input(id='strikeRate', label='Strike Rate', name='Strike rate')"></div>
+                </div>
+                <div class="row align-items-center mt-2">
+                  <div th:replace="fragments::number-input(id='runsScored', label='Runs Scored', name='Runs scored')"></div>
+                  <div th:replace="fragments::number-input(id='50RunsMade', label='50 Runs Made', name='50 runs made')"></div>
+                  <div th:replace="fragments::number-input(id='100RunsMade', label='100 Runs Made', name='100 runs made')"></div>
+                </div>
+                <div class="row align-items-center mt-2">
+                  <div th:replace="fragments::text-input(id='highestScore', label='Highest Score', name='Highest score')"></div>
+                  <div th:replace="fragments::number-input(id='4s', label='Fours, 4s', name='4s')"></div>
+                  <div th:replace="fragments::number-input(id='6s', label='Sixes, 6s', name='6s')"></div>
+                </div>
+                <div class="row align-items-center mt-2">
+                  <div th:replace="fragments::number-input(id='notOut', label='Not Out', name='Not out')"></div>
+                  <div th:replace="fragments::number-one-decimal-input(id='battingAvg', label='Batting Average', name='Batting avg')"></div>
+                </div>
+                <hr>
+                <h4 class="text-center">Bowling Stats</h4>
+                <div class="row align-items-center mt-2">
+                  <div class="col-2 font-weight-bold">Is Bowler?</div>
+                  <div class="col-1 form-check">
+                    <input type="radio" id="bowler1" name="Is bowler?" value="1" class="form-check-input">
+                    <label for="bowler1" class="form-check-label">Yes</label>
+                  </div>
+                  <div class="col-1 form-check">
+                    <input th:type="radio" th:id="bowler0" name="Is bowler?" value="0" class="form-check-input">
+                    <label th:for="bowler0" class="form-check-label">No</label>
+                  </div>
+                  <div th:replace="fragments::number-input(id='ballsBowled', label='Balls Bowled', name='Number of balls bowled')"></div>
+                  <div th:replace="fragments::number-input(id='runsGiven', label='Runs Given', name='Runs given')"></div>
+                </div>
+                <div class="row align-items-center mt-2">
+                  <div th:replace="fragments::number-input(id='wicketsTaken', label='Wickets Taken', name='Wkts taken')"></div>
+                  <div th:replace="fragments::number-one-decimal-input(id='Bowling', label='Bowling Economy', name='Bowling econ')"></div>
+                  <div th:replace="fragments::number-input(id='5WicketHauls', label='5 Wicket Hauls', name='5 Wicket hauls')"></div>
+                </div>
+                <hr>
+                <h4 class="text-center">Wicketkeeping Stats</h4>
+                <div class="row align-items-center mt-2">
+                  <div class="col-2 font-weight-bold">Is Wicketkeeper?</div>
+                  <div class="col-1 form-check">
+                    <input type="radio" id="keeper1" name="Is Wktkeeper(1=Yes)" value="1" class="form-check-input">
+                    <label for="keeper1" class="form-check-label">Yes</label>
+                  </div>
+                  <div class="col-1 form-check">
+                    <input th:type="radio" th:id="keeper0" name="Is Wktkeeper(1=Yes)" value="0" class="form-check-input">
+                    <label th:for="keeper0" class="form-check-label">No</label>
+                  </div>
+                  <div th:replace="fragments::number-ten-decimal-input(id='catchesPerMatch', label='Catches per Match', name='Catches per match')"></div>
+                  <div th:replace="fragments::number-input(id='catchesTaken', label='Catches Taken', name='Catches taken')"></div>
+                </div>
+                <hr>
+                <div class="w-fit-content mx-auto">
+                  <button class="btn btn-secondary btn-lg mx-1" type="reset">Clear</button>
+                  <button class="btn btn-primary btn-lg" type="submit" id="searchPrmry">Search</button>
+                </div>
+              </div>
+            </form>
+            
+            <!-- Results -->
+            <div class="bg-light p-1 mb-3 rounded" v-if="results.length">
+              <h3 id="results" class="d-inline">Results</h3>
+              <i v-bind:class="'float-right fa fa-2x fa-chevron-circle-' + chevron('results')" v-on:click="toggle('results', $event)"></i>
+            </div>
+            <table class="table table-hover" v-if="results.length" v-show="show.results">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Team</th>
+                  <th scope="col">Role</th>
+                  <th scope="col">Nationality</th>
+                  <th scope="col">Player Value USD</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody v-for="(player, i) in results">
+                <tr v-bind:class="{'text-white bg-secondary' : isActivePlayer(player)}">
+                  <th scope="row">{{ i+1 }}</th>
+                  <td> {{ player.Name + getCaptaincy(player) }} </td>
+                  <td> {{ player.Team }} </td>
+                  <td> {{ getRoles(player) }} </td>
+                  <td> {{ player.Nationality }} </td>
+                  <td class="text-right"> {{ player['Player Value USD'] }} </td>
+                  <td><button class="btn btn-info my-2 my-sm-0" v-on:click="getDetailedInfo(i)">More details</button></td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <!-- No Results -->
+            <div class="bg-info text-light text-center p-1 mb-3" v-if="show.noResults">
+                <h4>No players matched your search criteria.</h4>
+            </div>
+            
+            <!-- PlayerInfo -->
+            <div class="bg-light p-1 mb-3 rounded" v-show="activePlayer.hasOwnProperty('_id')">
+              <h3 id="playerInfo" class="d-inline">Player Info</h3>
+              <i v-bind:class="'float-right fa fa-2x fa-chevron-circle-' + chevron('playerInfo')" v-on:click="toggle('playerInfo', $event)"></i>
+            </div>
+            <div v-if="activePlayer.hasOwnProperty('_id')" v-show="show.playerInfo">
+              <table class="table table-bordered">
+                <tbody>
+                  <tr><td colspan="16" class="bg-dark text-white">
+                    <h4 class="d-inline">{{ activePlayer.Name + getCaptaincy(activePlayer)}},</h4>
+                    <h5 class="d-inline">{{ activePlayer.Team }}, {{ activePlayer.Nationality }}</h5>
+                    <h5 class="d-inline"> - {{ getRoles(activePlayer) }}</h5>
+                  </td></tr>
+                  <tr>
+                    <td class="font-weight-bold">Player Value USD</td>
+                    <td class="text-right">{{ activePlayer['Player Value USD'] }}</td>
+                    
+                    <td class="font-weight-bold">Matches</td>
+                    <td class="text-right">{{ activePlayer.Matches}}</td>
+                    
+                    <td class="font-weight-bold">Innings Played</td>
+                    <td class="text-right">{{ activePlayer['Innings played'] }}</td>
+          
+                    <td class="font-weight-bold">Is Captain?</td>
+                    <td class="text-right">{{ activePlayer['Is Captain(1=yes)'] ? 'Yes' : 'No' }}</td>
+                  </tr>
+                  <tr>
+                    <td class="font-weight-bold">Matches Played</td>
+                    <td class="text-right">{{ activePlayer['Matches played'] }}</td>
+                    
+                    <td class="font-weight-bold">Innings Played 2</td>
+                    <td class="text-right">{{ activePlayer['Innings played 2'] }}</td>
+          
+                    <td colspan="8"></td>
+                  </tr>
+                  <tr><td class="text-center bg-secondary text-white" colspan="16"><h5>Batting Stats</h5></td></tr>
+                  <tr>
+                    <td class="font-weight-bold">Is Batsman? </td>
+                    <td class="text-right">{{ activePlayer['Is batsman'] }}</td>
+                    
+                    <td class="font-weight-bold">Balls faced</td>
+                    <td class="text-right">{{ activePlayer['Balls faced'] }}</td>
+                    
+                    <td class="font-weight-bold">Strike Rate</td>
+                    <td class="text-right">{{ activePlayer['Strike rate'] }}</td>  
+                    
+                    <td class="font-weight-bold">Runs Scored</td>
+                    <td class="text-right">{{ activePlayer['Runs scored'] }}</td>
+                  </tr>
+                  <tr>
+                    <td class="font-weight-bold">50 Runs Made</td>
+                    <td class="text-right">{{ activePlayer['50 runs made'] }}</td>
+                    
+                    <td class="font-weight-bold">100 Runs Made</td>
+                    <td class="text-right">{{ activePlayer['100 runs made'] }}</td>
+          
+                    <td class="font-weight-bold">Highest Score</td>
+                    <td class="text-right">{{ activePlayer['Highest score'] }}</td>
+          
+                    <td class="font-weight-bold">Fours, 4s</td>
+                    <td class="text-right">{{ activePlayer['4s'] }}</td>
+                  </tr>
+                  <tr>
+                    <td class="font-weight-bold">Sixes, 6s</td>
+                    <td class="text-right">{{ activePlayer['6s'] }}</td>
+                    
+                    <td class="font-weight-bold">Not Out</td>
+                    <td class="text-right">{{ activePlayer['Not out'] }}</td>
+        
+                    <td class="font-weight-bold">Batting Average</td>
+                    <td class="text-right">{{ activePlayer['Batting avg'] }}</td>
+                    
+                    <td colspan="4"></td>
+                  </tr>
+                  <tr><td class="text-center bg-secondary text-white" colspan="16"><h5>Bowling Stats</h5></td></tr>
+                  <tr>
+                    <td class="font-weight-bold">Is Bowler?</td>
+                    <td class="text-right">{{ activePlayer['Is bowler?'] }}</td>
+        
+                    <td class="font-weight-bold">Balls Bowled</td>
+                    <td class="text-right">{{ activePlayer['Number of balls bowled'] }}</td>
+        
+                    <td class="font-weight-bold">Runs Given</td>
+                    <td class="text-right">{{ activePlayer['Runs given'] }}</td>      
+        
+                    <td class="font-weight-bold">Wickets Taken</td>
+                    <td class="text-right">{{ activePlayer['Wkts taken'] }}</td>
+                  </tr>
+                  <tr>
+                    <td class="font-weight-bold">Bowling Economy</td>
+                    <td class="text-right">{{ activePlayer['Bowling econ'] }}</td>
+        
+                    <td class="font-weight-bold">5 Wicket Hauls</td>
+                    <td class="text-right">{{ activePlayer['5 Wicket hauls'] }}</td>
+                    
+                    <td colspan="8"></td>
+                  </tr>
+                  <tr><td class="text-center bg-secondary text-white" colspan="16"><h5>Wicketkeeping Stats</h5></td></tr>
+                  <tr>
+                    <td class="font-weight-bold">Is Wicketkeeper?</td>
+                    <td class="text-right">{{ activePlayer['Is Wktkeeper(1=Yes)'] }}</td>
+        
+                    <td class="font-weight-bold">Catches per Match</td>
+                    <td class="text-right">{{ activePlayer['Catches per match'] }}</td>
+        
+                    <td class="font-weight-bold">Catches Taken</td>
+                    <td class="text-right">{{ activePlayer['Catches taken'] }}</td>      
+        
+                    <td colspan="4"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
     </div>
     
-    <!-- Bootstrap core JavaScript -->
-    <script src="js/jquery.slim.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Axios core JavaScript -->
-    <script src="js/axios.min.js"></script>
-    
+    <!-- jQuery -->
+    <script src="webjars/jquery/3.4.1/jquery.slim.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="/webjars/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <!-- Axios js -->
+    <script src="/webjars/axios/0.19.2/dist/axios.min.js"></script>
+    <!-- Vuejs -->
+    <script src="/webjars/vue/2.6.11/vue.min.js"></script>
     <!-- Custom JavaScript -->
     <script src="js/main.js"></script>
-    
   </body>
 </html>
