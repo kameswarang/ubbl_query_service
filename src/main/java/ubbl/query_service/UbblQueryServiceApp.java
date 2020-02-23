@@ -7,6 +7,7 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.web.client.RestTemplate;
 
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -15,6 +16,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 
 @SpringBootApplication
 @EnableFeignClients
+@EnableMongoRepositories
 public class UbblQueryServiceApp {
    public static void main(String[] args) {
 		SpringApplication.run(UbblQueryServiceApp.class, args);

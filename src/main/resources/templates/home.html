@@ -51,8 +51,12 @@
                     <a class="nav-link" href="to github">my.LinkedIn</a>
                   </li>
                 </ul>
+                <span class="text-white my-2 my-sm-0 mx-1" th:text="|Logged in as, ${user.getName()}|"></span>
                 <button class="btn btn-secondary my-2 my-sm-0 mx-1" v-on:click="clear">Clear</button>
                 <button class="btn btn-primary my-2 my-sm-0" v-on:click="search">Search</button>
+                <form method="POST" th:action="@{/logout}">
+                    <button type="submit" class="btn btn-primary my-2 my-sm-0 mx-1">Logout</button>
+                </form>
               </div>
             </div>
         </nav>
@@ -70,7 +74,7 @@
                 <h3 id="criteria" class="d-inline">Criteria</h3>
                 <i v-bind:class="'float-right fa fa-2x fa-chevron-circle-' + chevron('criteria')" v-on:click="toggle('criteria', $event)"></i>
             </div>
-            <form id="searchForm" class="px-1" v-on:submit="search" v-show="show.criteria">
+            <form th:action="@{/home}" id="searchForm" class="px-1" v-on:submit="search" v-show="show.criteria">
               <div class="form-group">
                 <h4 class="text-center">Basic Info</h4>
                 <div class="row align-items-center mt-2">
