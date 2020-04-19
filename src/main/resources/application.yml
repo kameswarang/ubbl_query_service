@@ -1,7 +1,6 @@
 spring:
   application:
     name: ubbl-query-service
-    databaseName: ubbldb
   devtools:
     restart:
       enabled: true
@@ -16,6 +15,6 @@ server:
 
 eureka:
   client:
-    enabled: true
+    enabled: false
     serviceUrl:
       defaultZone: http://ip-172-31-21-143:8080/eureka
