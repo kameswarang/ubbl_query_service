@@ -18,7 +18,7 @@ import ubbl.query_service.model.User;
 import ubbl.query_service.web.client.DataServiceClient;
 
 @Controller
-@RequestMapping(path={"/", "/home"})
+@RequestMapping(path={"/home"})
 public class HomeController {
     @Autowired
     DataServiceClient dataService;

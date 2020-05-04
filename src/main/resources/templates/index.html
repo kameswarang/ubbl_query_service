@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Index page">
+        <meta name="author" content="Kameswaran Ganesh">
+        
+        <title>Ultimate Big Bash League - Index</title>
+        
+        <!-- Bootstrap core CSS -->
+        <link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom css -->
+        <link href="css/main.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="info" class="container w-25 h-50 p-1 mx-auto mt-3 border border-dark rounded">
+            Please wait while this application is woken up from hibernation.
+            <br>
+            You will be redirected automatically.
+        </div>
+        <div id="error" class="container w-25 h-50 p-1 mx-auto mt-3 border border-danger rounded text-danger">
+            Error while loading the application. Please try again, later.            
+        </div>
+        <span id="eureka_server" class="d-none" th:text="${eureka_server}"></span>
+        <span id="data_service" class="d-none" th:text="${data_service}"></span>
+        <!-- jQuery -->
+        <script src="webjars/jquery/3.4.1/jquery.slim.min.js"></script>        
+        <!-- Bootstrap js -->
+        <script src="webjars/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <!-- Axios js -->
+        <script src="/webjars/axios/0.19.2/dist/axios.min.js"></script>
+        <!-- Custom JavaScript -->
+        <script src="js/index.js"></script>
+        </body>
+</html>
