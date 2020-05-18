@@ -34,7 +34,7 @@ public class HomeController {
     public String postHome(@RequestBody String query) {
         try {
             String result = dataService.search(query);
-            return ResponseEntity.ok(result).toString();
+            return result.toString();
         }
         catch(Error e) {
             e.printStackTrace();
