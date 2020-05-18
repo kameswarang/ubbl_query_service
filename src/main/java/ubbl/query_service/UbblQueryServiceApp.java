@@ -8,6 +8,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -30,7 +32,12 @@ public class UbblQueryServiceApp {
 	public RestTemplate restTemplate() {
 	    return new RestTemplate();
 	}
-	
+	    
+    @Bean
+    public PasswordEncoder passEnc() {
+        return new BCryptPasswordEncoder();
+    }
+    
 	@Bean
 	public SpringResourceTemplateResolver templateResolver() {
     	SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
