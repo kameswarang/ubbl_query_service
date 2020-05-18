@@ -63,7 +63,7 @@ var vm = new Vue({
             
             console.log(databaseQuery);
             
-            axios.post('', {databaseQuery})
+            axios.post('', databaseQuery)
                 .then(function(response) {
                     console.log(response);
                     if(response.data.length) {
