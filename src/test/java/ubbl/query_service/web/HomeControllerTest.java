@@ -29,7 +29,7 @@ public class HomeControllerTest {
 	
 	@Test
 	public void get_home_without_user_should_redirect_to_login() throws Exception {
-		mockMvc.perform(get("/"))
+		mockMvc.perform(get("/home"))
 		    .andExpect(redirectedUrlPattern("**/login"));
 	}
 	
