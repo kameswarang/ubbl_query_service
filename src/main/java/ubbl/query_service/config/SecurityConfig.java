@@ -32,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSec) throws Exception {
 	    httpSec
+	        .csrf().disable()
 	        .authorizeRequests()
 	            .antMatchers("/home").hasRole("USER")
             .and()
