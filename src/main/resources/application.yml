@@ -18,3 +18,9 @@ eureka:
     enabled: true
     serviceUrl:
       defaultZone: ${EUREKA_SERVER_URI}
+      
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 600000
+  ConnectTimeout: 10000
