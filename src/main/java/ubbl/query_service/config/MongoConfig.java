@@ -32,14 +32,17 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 	public MongoClient mongoClient() {
 		this.getDatabaseName();
 		profile = System.getenv("spring_profiles_active");
+		System.out.println(profile);
 		
 	    MongoClient mc = MongoClients.create(this.uri);
 		
 		//For non-prod envs drop "user" collection
-		if(profile != "prod") {
+		if(!profile.equals("prod")) {
 		    MongoCollection<Document> user = mc.getDatabase(this.getDatabaseName()).getCollection("user");
-		    if(user != null)
+		    if(user != null) {
 		    	user.drop();
+		    	System.out.println("user collection dropped");
+		    }
 		}
 		
 		return mc;
