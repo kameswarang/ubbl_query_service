@@ -14,6 +14,9 @@ server:
   port: 8080
 
 eureka:
+  instance:
+    hostname: ${DOMAIN_NAME}
+    instanceId: ${DOMAIN_NAME}:${spring.application.name}:${server.port}
   client:
     enabled: true
     serviceUrl:
