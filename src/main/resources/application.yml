@@ -10,13 +10,17 @@ logging:
   level:
     org.springframework.boot.autoconfigure.logging: INFO
 
+---
+spring:
+  profile: dev
 server:
   port: 8080
+---
 
 eureka:
   instance:
     hostname: ${DOMAIN_NAME}
-    instanceId: ${DOMAIN_NAME}:${spring.application.name}:${server.port}
+    instanceId: ${DOMAIN_NAME}
   client:
     enabled: true
     serviceUrl:
