@@ -21,6 +21,11 @@ eureka:
   instance:
     hostname: ${DOMAIN_NAME}
     instanceId: ${DOMAIN_NAME}
+    nonSecurePortEnabled: false
+    securePortEnable: true
+    statusPageUrl: https://${eureka.instance.hostname}/info
+    healthCheckUrl: https://${eureka.instance.hostname}/health
+    homePageUrl: https://${eureka.instance.hostname}/
   client:
     enabled: true
     serviceUrl:
