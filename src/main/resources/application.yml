@@ -13,6 +13,7 @@ logging:
 ---
 spring:
   profile: dev
+  
 server:
   port: 8080
   
@@ -22,16 +23,24 @@ logging:
     ubbl.query_service.web.client.DataServiceClient: DEBUG
 ---
 
+---
+spring:
+  profile: prod
+
 eureka:
   instance:
-    hostname: ${DOMAIN_NAME}
-    instanceId: ${DOMAIN_NAME}
     nonSecurePortEnabled: false
     securePortEnabled: true
     securePort: 443
     statusPageUrl: https://${eureka.instance.hostname}/info
     healthCheckUrl: https://${eureka.instance.hostname}/health
     homePageUrl: https://${eureka.instance.hostname}/
+---
+
+eureka:
+  instance:
+    hostname: ${DOMAIN_NAME}
+    instanceId: ${DOMAIN_NAME}
   client:
     enabled: true
     serviceUrl:

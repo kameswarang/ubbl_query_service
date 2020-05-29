@@ -83,9 +83,9 @@
                   <div th:replace="fragments::text-input(id='team', label='Team', name='Team')"></div>
                 </div>
                 <div class="row align-items-center mt-2">
-                  <div th:replace="fragments::number-input(id='value', label='Player Value USD', name='Player Value USD')"></div>
-                  <div th:replace="fragments::number-input(id='matches', label='Matches', name='Matches')"></div>
-                  <div th:replace="fragments::number-input(id='innings', label='Innings played', name='Innings played')"></div>
+                  <div th:replace="fragments::number-hundred-thousand-step-input(id='value', label='Player Value USD', name='Player Value USD')"></div>
+                  <div th:replace="fragments::number-ten-step-input(id='matches', label='Matches', name='Matches')"></div>
+                  <div th:replace="fragments::number-ten-step-input(id='innings', label='Innings played', name='Innings played')"></div>
                 </div>
                 <div class="row align-items-center mt-2">
                   <div class="col-2 font-weight-bold">Is Captain?</div>
@@ -97,8 +97,8 @@
                     <input type="radio" id="captaincy0" name="Is Captain(1=yes)" value="0" class="form-check-input">
                     <label for="captaincy0" class="form-check-label">No</label>
                   </div>
-                  <div th:replace="fragments::number-input(id='matches2', label='Matches played', name='Matches played')"></div>
-                  <div th:replace="fragments::number-input(id='innings2', label='Innings played 2', name='Innings played 2')"></div>
+                  <div th:replace="fragments::number-ten-step-input(id='matches2', label='Matches played', name='Matches played')"></div>
+                  <div th:replace="fragments::number-ten-step-input(id='innings2', label='Innings played 2', name='Innings played 2')"></div>
                 </div>
                 <hr>
                 <h4 class="text-center">Batting Stats</h4>
@@ -112,22 +112,22 @@
                     <input th:type="radio" th:id="batsman0" name="Is batsman" value="0" class="form-check-input">
                     <label th:for="batsman0" class="form-check-label">No</label>
                   </div>
-                  <div th:replace="fragments::number-input(id='ballsFaced', label='Balls faced', name='Balls faced')"></div>
-                  <div th:replace="fragments::number-one-decimal-input(id='strikeRate', label='Strike Rate', name='Strike rate')"></div>
+                  <div th:replace="fragments::number-ten-step-input(id='ballsFaced', label='Balls faced', name='Balls faced')"></div>
+                  <div th:replace="fragments::number-one-step-decimal-input(id='strikeRate', label='Strike Rate', name='Strike rate')"></div>
                 </div>
                 <div class="row align-items-center mt-2">
-                  <div th:replace="fragments::number-input(id='runsScored', label='Runs Scored', name='Runs scored')"></div>
+                  <div th:replace="fragments::number-hundred-step-input(id='runsScored', label='Runs Scored', name='Runs scored')"></div>
                   <div th:replace="fragments::number-input(id='50RunsMade', label='50 Runs Made', name='50 runs made')"></div>
                   <div th:replace="fragments::number-input(id='100RunsMade', label='100 Runs Made', name='100 runs made')"></div>
                 </div>
                 <div class="row align-items-center mt-2">
-                  <div th:replace="fragments::text-input(id='highestScore', label='Highest Score', name='Highest score')"></div>
-                  <div th:replace="fragments::number-input(id='4s', label='Fours, 4s', name='4s')"></div>
-                  <div th:replace="fragments::number-input(id='6s', label='Sixes, 6s', name='6s')"></div>
+                  <div th:replace="fragments::number-ten-step-input(id='highestScore', label='Highest Score', name='Highest score')"></div>
+                  <div th:replace="fragments::number-ten-step-input(id='4s', label='Fours, 4s', name='4s')"></div>
+                  <div th:replace="fragments::number-ten-step-input(id='6s', label='Sixes, 6s', name='6s')"></div>
                 </div>
                 <div class="row align-items-center mt-2">
                   <div th:replace="fragments::number-input(id='notOut', label='Not Out', name='Not out')"></div>
-                  <div th:replace="fragments::number-one-decimal-input(id='battingAvg', label='Batting Average', name='Batting avg')"></div>
+                  <div th:replace="fragments::number-one-step-decimal-input(id='battingAvg', label='Batting Average', name='Batting avg')"></div>
                 </div>
                 <hr>
                 <h4 class="text-center">Bowling Stats</h4>
@@ -141,12 +141,12 @@
                     <input th:type="radio" th:id="bowler0" name="Is bowler?" value="0" class="form-check-input">
                     <label th:for="bowler0" class="form-check-label">No</label>
                   </div>
-                  <div th:replace="fragments::number-input(id='ballsBowled', label='Balls Bowled', name='Number of balls bowled')"></div>
-                  <div th:replace="fragments::number-input(id='runsGiven', label='Runs Given', name='Runs given')"></div>
+                  <div th:replace="fragments::number-ten-step-input(id='ballsBowled', label='Balls Bowled', name='Number of balls bowled')"></div>
+                  <div th:replace="fragments::number-hundred-step-input(id='runsGiven', label='Runs Given', name='Runs given')"></div>
                 </div>
                 <div class="row align-items-center mt-2">
-                  <div th:replace="fragments::number-input(id='wicketsTaken', label='Wickets Taken', name='Wkts taken')"></div>
-                  <div th:replace="fragments::number-one-decimal-input(id='Bowling', label='Bowling Economy', name='Bowling econ')"></div>
+                  <div th:replace="fragments::number-ten-step-input(id='wicketsTaken', label='Wickets Taken', name='Wkts taken')"></div>
+                  <div th:replace="fragments::number-one-step-decimal-input(id='Bowling', label='Bowling Economy', name='Bowling econ')"></div>
                   <div th:replace="fragments::number-input(id='5WicketHauls', label='5 Wicket Hauls', name='5 Wicket hauls')"></div>
                 </div>
                 <hr>
@@ -161,8 +161,8 @@
                     <input th:type="radio" th:id="keeper0" name="Is Wktkeeper(1=Yes)" value="0" class="form-check-input">
                     <label th:for="keeper0" class="form-check-label">No</label>
                   </div>
-                  <div th:replace="fragments::number-ten-decimal-input(id='catchesPerMatch', label='Catches per Match', name='Catches per match')"></div>
-                  <div th:replace="fragments::number-input(id='catchesTaken', label='Catches Taken', name='Catches taken')"></div>
+                  <div th:replace="fragments::number-one-step-decimal-input(id='catchesPerMatch', label='Catches per Match', name='Catches per match')"></div>
+                  <div th:replace="fragments::number-ten-step-input(id='catchesTaken', label='Catches Taken', name='Catches taken')"></div>
                 </div>
                 <hr>
                 <div class="w-fit-content mx-auto">
@@ -174,18 +174,18 @@
             
             <!-- Results -->
             <div class="bg-light p-1 mb-3 rounded" v-if="results.length">
-              <h3 id="results" class="d-inline">Results</h3>
+              <h3 id="results" class="d-inline">Results ({{ results.length }})</h3>
               <i v-bind:class="'float-right fa fa-2x fa-chevron-circle-' + chevron('results')" v-on:click="toggle('results', $event)"></i>
             </div>
             <table class="table table-hover" v-if="results.length" v-show="show.results">
               <thead class="thead-dark">
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Team</th>
-                  <th scope="col">Role</th>
-                  <th scope="col">Nationality</th>
-                  <th scope="col">Player Value USD</th>
+                  <th scope="col" class="text-center">#</th>
+                  <th scope="col" class="text-center">Name</th>
+                  <th scope="col" class="text-center">Team</th>
+                  <th scope="col" class="text-center">Role</th>
+                  <th scope="col" class="text-center">Nationality</th>
+                  <th scope="col" class="text-center">Player Value USD</th>
                   <th scope="col"></th>
                 </tr>
               </thead>
@@ -245,7 +245,7 @@
                   <tr><td class="text-center bg-secondary text-white" colspan="16"><h5>Batting Stats</h5></td></tr>
                   <tr>
                     <td class="font-weight-bold">Is Batsman? </td>
-                    <td class="text-right">{{ activePlayer['Is batsman'] }}</td>
+                    <td class="text-right">{{ activePlayer['Is batsman'] ? 'Yes' : 'No'}}</td>
                     
                     <td class="font-weight-bold">Balls faced</td>
                     <td class="text-right">{{ activePlayer['Balls faced'] }}</td>
@@ -284,7 +284,7 @@
                   <tr><td class="text-center bg-secondary text-white" colspan="16"><h5>Bowling Stats</h5></td></tr>
                   <tr>
                     <td class="font-weight-bold">Is Bowler?</td>
-                    <td class="text-right">{{ activePlayer['Is bowler?'] }}</td>
+                    <td class="text-right">{{ activePlayer['Is bowler?'] ? 'Yes' : 'No'}}</td>
         
                     <td class="font-weight-bold">Balls Bowled</td>
                     <td class="text-right">{{ activePlayer['Number of balls bowled'] }}</td>
@@ -307,7 +307,7 @@
                   <tr><td class="text-center bg-secondary text-white" colspan="16"><h5>Wicketkeeping Stats</h5></td></tr>
                   <tr>
                     <td class="font-weight-bold">Is Wicketkeeper?</td>
-                    <td class="text-right">{{ activePlayer['Is Wktkeeper(1=Yes)'] }}</td>
+                    <td class="text-right">{{ activePlayer['Is Wktkeeper(1=Yes)'] ? 'Yes' : 'No'}}</td>
         
                     <td class="font-weight-bold">Catches per Match</td>
                     <td class="text-right">{{ activePlayer['Catches per match'] }}</td>

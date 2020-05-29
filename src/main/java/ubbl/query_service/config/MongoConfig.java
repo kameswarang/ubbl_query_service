@@ -40,8 +40,8 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 		if(!profile.equals("prod")) {
 		    MongoCollection<Document> user = mc.getDatabase(this.getDatabaseName()).getCollection("user");
 		    if(user != null) {
-		    	user.drop();
-		    	System.out.println("user collection dropped");
+		    	//user.drop();
+		    	//System.out.println("user collection dropped");
 		    }
 		}
 		

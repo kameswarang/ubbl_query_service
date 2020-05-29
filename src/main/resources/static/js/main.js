@@ -29,34 +29,39 @@ var vm = new Vue({
 
             //format form data into JSON query
             for(let dic of formData) {
-                if(dic.value !== ""){
+                if(dic.value !== "" && dic.name.substr(-3) !== "-op"){ // avoid empty fields and operator fields
                     var valueInt = parseInt(dic.value);
                     
                     if(isNaN(valueInt)) { // if it is a string
-                        databaseQuery[dic.name] = dic.value;
+                        databaseQuery["$text"] = {"$search": dic.value};
                     }
-                    else {
+                    else { // it is a number
+                        if(dic.name.substr(0, 2) == "Is") { // if it's a boolean number
+                            databaseQuery[dic.name] = valueInt;
+                            continue;
+                        }
+                        var op; // get operator of the respective field; like Age-op
+                        for(let dict of formData) {
+                            if(dict.name == dic.name+'-op') {
+                                op = dict.value;
+                            }
+                        }
+                        if(dic.name == "Highest score") {
+                            if(op == "*") {
+                                databaseQuery["$text"] = {"$search": dic.value+"*"};
+                                continue;
+                            }
+                        }
+                        var params = {};
                         var valueFloat = parseFloat(dic.value);
-                        if(valueInt == valueFloat) { // if it is an int
-                            //check that the int and string are of same length
-                            
-                            var n = Number(valueInt);
-                            var i = 0;
-                            while(n > 1) {
-                                i++;
-                                n /= 10;
-                            }
-                            
-                            if(i == dic.value.length) {
-                                databaseQuery[dic.name] = valueInt; // it is an int
-                            }
-                            else {
-                                databaseQuery[dic.name] = dic.value; // it is a string
-                            }
+                        if(valueInt == valueFloat) {
+                            // it is an int
+                            params[op] = valueInt;
                         }
                         else { // it is a float
-                            databaseQuery[dic.name] = valueFloat;
+                            params[op] = valueFloat;
                         }
+                        databaseQuery[dic.name] = params;
                     }
                 }
             }
@@ -74,6 +79,7 @@ var vm = new Vue({
                         jQuery("#criteria")[0].scrollIntoView(true, {behavior: 'smooth', block: 'start'});
                     }
                     else {
+                        vm.results = response.data;
                         vm.show.criteria = false;
                         vm.show.results = false;
                         vm.show.noResults = true;
@@ -92,7 +98,6 @@ var vm = new Vue({
                         console.log(error.message);
                         jQuery("#errorModal").modal('show');
                     }
-                    console.log(error.config);
                 });
         },
         clear: function(e) {
