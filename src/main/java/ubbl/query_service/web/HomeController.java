@@ -1,5 +1,8 @@
 package ubbl.query_service.web;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpStatus;
@@ -25,6 +28,12 @@ public class HomeController {
     
     @GetMapping
     public String getHome(Model model, @AuthenticationPrincipal(errorOnInvalidType=true) UserDetails user) {
+        List<String> nations = Arrays.asList("Australia", "Bangladesh", "England", "India", "Netherlands", "New Zealand", "South Africa", "Sri Lanka", "West Indies");
+        model.addAttribute("nations", nations);
+        
+        List<String> teams = Arrays.asList("Sydney Thunder", "Adelaide Strikers", "Perth Scorchers", "Hobart Hurricanes", "Brisbane Heat", "Melbourne Renegades", "Sydney Sixers");
+        model.addAttribute("teams", teams);
+        
         model.addAttribute("user", user);
         return "home";
     }

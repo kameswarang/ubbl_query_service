@@ -5,6 +5,13 @@
       <label th:for="${id}" th:text="${label}" class="font-weight-bold"></label>
       <input type="text" class="form-control" th:id="${id}" th:name="${name}" th:placeholder="${label}"></input>
     </div>
+    <div th:fragment="text-select-input (id, label, name, options)" class="col">
+      <label th:for="${id}" th:text="${label}" class="font-weight-bold"></label>
+      <select class="custom-select" th:id="${id}" th:name="${name}" th:placeholder="${label}">
+        <option disabled selected value th:text="${label}"></option>
+        <option th:each="option : ${options}" th:value="${option}" th:text="${option}"></option>
+      </select>      
+    </div>
     <div th:fragment="number-input (id, label, name)" class="col"> 
       <label th:for="${id}" th:text="${label}" class="font-weight-bold"></label>
       <div class="input-group">

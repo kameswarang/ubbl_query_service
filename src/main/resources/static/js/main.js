@@ -33,6 +33,10 @@ var vm = new Vue({
                     var valueInt = parseInt(dic.value);
                     
                     if(isNaN(valueInt)) { // if it is a string
+                        if(dic.name == "Nationality" || dic.name == "Team") {
+                            databaseQuery[dic.name] = dic.value;
+                            continue;
+                        }
                         databaseQuery["$text"] = {"$search": dic.value};
                     }
                     else { // it is a number
@@ -102,6 +106,8 @@ var vm = new Vue({
         },
         clear: function(e) {
             jQuery("#searchForm")[0].reset();
+            vm.results = [];
+            vm.show.results = false;
         },
         getCaptaincy: function(player) { return player['Is Captain(1=yes)'] ? " (Captain)" : ""; },
         getRoles: function(player) {
