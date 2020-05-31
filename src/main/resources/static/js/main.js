@@ -90,10 +90,10 @@ var vm = new Vue({
                     }
                 })
                 .catch(function(error) {
-                    if(error.response) {
-                        console.log(error.response);
-                        jQuery("#errorModal").modal('show');
-                    }
+                    console.log(error.response);
+                    vm.errorMessage = error.response.data.message;
+                    jQuery("#errorModal").modal('show');
+/*
                     else if(error.request) {
                         console.log(error.request);
                         jQuery("#errorModal").modal('show');
@@ -102,6 +102,7 @@ var vm = new Vue({
                         console.log(error.message);
                         jQuery("#errorModal").modal('show');
                     }
+*/
                 });
         },
         clear: function(e) {
