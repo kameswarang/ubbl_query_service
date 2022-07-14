@@ -109,6 +109,7 @@ var vm = new Vue({
             jQuery("#searchForm")[0].reset();
             vm.results = [];
             vm.show.results = false;
+            vm.show.criteria = true;
         },
         getCaptaincy: function(player) { return player['Is Captain(1=yes)'] ? " (Captain)" : ""; },
         getRoles: function(player) {
