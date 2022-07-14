@@ -1,5 +1,7 @@
 # The Ultimate Big Bash League Dream Team Selection Challenge 
 
+This app was developed as a solution to a full-stack hiring challenge and can be accessed here: https://ubblqueryservice-kganesh1795.herokuapp.com/
+
 ###  Important instructions:
 There are two levels of the problem. Once you complete the first level, you can proceed to the second level (next question). It is not compulsory to attempt the second level and you can attempt the second level only when you complete the first level. However, it is recommended to proceed with the second level once you have provided the submission for the first level.
 
